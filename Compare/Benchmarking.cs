@@ -29,14 +29,14 @@ public class Benchmarking
 
         if (precoMagalu < precoMercado)
         {
-            PrecoComparado.AtualizarPrecoPorId(idProduto, precoMagalu);
+            //PrecoComparado.AtualizarPrecoPorId(idProduto, precoMagalu);
             //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Magazine Luiza", "Sucesso", idProduto);
             SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", precoMagazineLuiza.Url, idProduto, NomeProduto);
             
         }
         else if (precoMercado < precoMagalu)
         {
-            PrecoComparado.AtualizarPrecoPorId(idProduto, precoMercado);
+            //PrecoComparado.AtualizarPrecoPorId(idProduto, precoMercado);
             //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Mercado Livre", "Sucesso", idProduto);
             SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Mercado Livre", precoMercadoLivre.Url, idProduto, NomeProduto);
             

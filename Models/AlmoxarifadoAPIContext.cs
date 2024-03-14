@@ -49,6 +49,12 @@ namespace AlmoxarifadoAPI.Models
                 entity.Property(e => e.Preco)
                     .HasColumnType("decimal(10, 2)")
                     .HasColumnName("preco");
+
+                entity.Property(e => e.Estado)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("estado");
+
             });
 
             modelBuilder.Entity<Logrobo>(entity =>

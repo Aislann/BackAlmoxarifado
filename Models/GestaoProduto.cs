@@ -10,5 +10,6 @@ namespace AlmoxarifadoAPI.Models
         public decimal? Preco { get; set; }
         public int? EstoqueAtual { get; set; }
         public int? EstoqueMinimo { get; set; }
+        public string Estado{ get; set; }
     }
 }
