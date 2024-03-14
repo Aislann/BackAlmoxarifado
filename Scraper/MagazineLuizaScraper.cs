@@ -50,7 +50,7 @@ public class MagazineLuizaScraper
 
 
                     // Registra o log com o ID do produto
-                    //RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Sucesso", idProduto);
+                    RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Sucesso", idProduto);
 
                     // Retorna o preço
                     return produto;
@@ -60,7 +60,7 @@ public class MagazineLuizaScraper
                     Console.WriteLine("Preço não encontrado.");
 
                     // Registra o log com o ID do produto
-                    //RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Preço não encontrado", idProduto);
+                    RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Preço não encontrado", idProduto);
 
                     return null;
                 }
@@ -89,9 +89,9 @@ public class MagazineLuizaScraper
                 DateLog = dateLog,
                 Etapa = processo,
                 InformacaoLog = infLog,
-                IdProdutoApi = idProd
+                IdProdutoAPI = idProd
             };
-            context.Logrobos.Add(log);
+            context.LOGROBO.Add(log);
             context.SaveChanges();
         }
 

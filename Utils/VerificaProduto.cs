@@ -11,7 +11,6 @@ namespace CrawlerDados.Utils
 
         public static void VerificarNovoProduto(GestaoProduto produto)
         {
-            Console.WriteLine("ETAPA ATIVADA");
 
             try
             {
@@ -24,17 +23,15 @@ namespace CrawlerDados.Utils
                         // Adicionar o produto à lista de produtos verificados
                         produtosVerificados.Add(produto);
 
-                            //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Verificação", "Sucesso", produto.IdProduto);
+                        LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Verificação", "Sucesso", produto.IdProduto);
 
-                            MercadoLivreScraper mercadoLivreScraper = new MercadoLivreScraper();
-                            MagazineLuizaScraper magazineLuizaScraper = new MagazineLuizaScraper();
+                        MercadoLivreScraper mercadoLivreScraper = new MercadoLivreScraper();
+                        MagazineLuizaScraper magazineLuizaScraper = new MagazineLuizaScraper();
 
-                            // Obter preço da Magazine Luiza
-                            var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto);
-                            // Obter preço do Mercado Livre
-                            var precoMercadoLivre = mercadoLivreScraper.ObterPreco(produto.Descricao, produto.IdProduto);
+                        var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto);
+                        var precoMercadoLivre = mercadoLivreScraper.ObterPreco(produto.Descricao, produto.IdProduto);
 
-                            Benchmarking.CompararValores(precoMagazineLuiza, precoMercadoLivre, produto.IdProduto, produto.Descricao);
+                        Benchmarking.CompararValores(precoMagazineLuiza, precoMercadoLivre, produto.IdProduto, produto.Descricao);
 
                     }
                 }

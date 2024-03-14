@@ -11,6 +11,6 @@ namespace AlmoxarifadoAPI.Models
         public DateTime DateLog { get; set; }
         public string Etapa { get; set; } = null!;
         public string InformacaoLog { get; set; } = null!;
-        public int IdProdutoApi { get; set; }
+        public int IdProdutoAPI { get; set; }
     }
 }

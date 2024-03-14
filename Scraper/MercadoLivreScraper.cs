@@ -36,9 +36,9 @@ public class MercadoLivreScraper
                 produto.Url = firstProductUrl;
 
                 // Registra o log com o ID do produto
-                //RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", "Sucesso", idProduto);
+                RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", "Sucesso", idProduto);
 
-                
+
                 // Retorna o preço
                 return produto;
             }
@@ -48,7 +48,7 @@ public class MercadoLivreScraper
                 Console.WriteLine("Preço não encontrado.");
 
                 // Registra o log com o ID do produto
-                //RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", "Preço não encontrado", idProduto);
+                RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", "Preço não encontrado", idProduto);
 
                 return null;
             }
@@ -59,30 +59,30 @@ public class MercadoLivreScraper
             Console.WriteLine($"Erro ao acessar a página: {ex.Message}");
 
             // Registra o log com o ID do produto
-            //RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", $"Erro: {ex.Message}", idProduto);
+            RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Mercado Livre", $"Erro: {ex.Message}", idProduto);
 
             return null;
         }
 
     }
 
-    //private void RegistrarLog(string codRob, string usuRob, DateTime dateLog, string processo, string infLog, int idProd)
-    //{
-    //    using (var context = new AlmoxarifadoAPIContext())
-    //    {
-    //        var log = new Logrobo
-    //        {
-    //            CodigoRobo = codRob,
-    //            UsuarioRobo = usuRob,
-    //            DateLog = dateLog,
-    //            Etapa = processo,
-    //            InformacaoLog = infLog,
-    //            IdProdutoApi = idProd
-    //        };
-    //        context.Logrobos.Add(log);
-    //        context.SaveChanges();
-    //    }
-    //}
+    private void RegistrarLog(string codRob, string usuRob, DateTime dateLog, string processo, string infLog, int idProd)
+    {
+        using (var context = new AlmoxarifadoAPIContext())
+        {
+            var log = new Logrobo
+            {
+                CodigoRobo = codRob,
+                UsuarioRobo = usuRob,
+                DateLog = dateLog,
+                Etapa = processo,
+                InformacaoLog = infLog,
+                IdProdutoAPI = idProd
+            };
+            context.LOGROBO.Add(log);
+            context.SaveChanges();
+        }
+    }
 
 
 }

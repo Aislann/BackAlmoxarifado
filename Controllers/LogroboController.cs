@@ -24,22 +24,22 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Logrobo>>> GetLogrobos()
         {
-          if (_context.Logrobos == null)
+          if (_context.LOGROBO == null)
           {
               return NotFound();
           }
-            return await _context.Logrobos.ToListAsync();
+            return await _context.LOGROBO.ToListAsync();
         }
 
         // GET: api/Logrobo/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Logrobo>> GetLogrobo(int id)
         {
-          if (_context.Logrobos == null)
+          if (_context.LOGROBO == null)
           {
               return NotFound();
           }
-            var logrobo = await _context.Logrobos.FindAsync(id);
+            var logrobo = await _context.LOGROBO.FindAsync(id);
 
             if (logrobo == null)
             {
@@ -85,11 +85,11 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Logrobo>> PostLogrobo(Logrobo logrobo)
         {
-          if (_context.Logrobos == null)
+          if (_context.LOGROBO == null)
           {
               return Problem("Entity set 'AlmoxarifadoAPIContext.Logrobos'  is null.");
           }
-            _context.Logrobos.Add(logrobo);
+            _context.LOGROBO.Add(logrobo);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLogrobo", new { id = logrobo.IDlOg }, logrobo);
@@ -99,17 +99,17 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLogrobo(int id)
         {
-            if (_context.Logrobos == null)
+            if (_context.LOGROBO == null)
             {
                 return NotFound();
             }
-            var logrobo = await _context.Logrobos.FindAsync(id);
+            var logrobo = await _context.LOGROBO.FindAsync(id);
             if (logrobo == null)
             {
                 return NotFound();
             }
 
-            _context.Logrobos.Remove(logrobo);
+            _context.LOGROBO.Remove(logrobo);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -117,7 +117,7 @@ namespace AlmoxarifadoAPI.Controllers
 
         private bool LogroboExists(int id)
         {
-            return (_context.Logrobos?.Any(e => e.IDlOg == id)).GetValueOrDefault();
+            return (_context.LOGROBO?.Any(e => e.IDlOg == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AISLAN\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj": {}
+    "C:\\Users\\tarde.cetafaju\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AISLAN\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj": {
+    "C:\\Users\\tarde.cetafaju\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AISLAN\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj",
+        "projectUniqueName": "C:\\Users\\tarde.cetafaju\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj",
         "projectName": "AlmoxarifadoAPI",
-        "projectPath": "C:\\Users\\AISLAN\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj",
-        "packagesPath": "C:\\Users\\AISLAN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AISLAN\\Desktop\\BackAlmoxarifado-main\\obj\\",
+        "projectPath": "C:\\Users\\tarde.cetafaju\\Desktop\\BackAlmoxarifado-main\\AlmoxarifadoAPI.csproj",
+        "packagesPath": "C:\\Users\\tarde.cetafaju\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tarde.cetafaju\\Desktop\\BackAlmoxarifado-main\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\AISLAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tarde.cetafaju\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -47,6 +47,10 @@
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.59, )"
+            },
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[8.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -94,24 +98,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.26, 6.0.26]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.26, 6.0.26]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -120,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

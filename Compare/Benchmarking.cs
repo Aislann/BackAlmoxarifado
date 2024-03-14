@@ -1,5 +1,4 @@
-﻿using AlmoxarifadoAPI.Compare;
-using AlmoxarifadoAPI.Models;
+﻿using AlmoxarifadoAPI.Models;
 using CrawlerDados.Models;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +9,8 @@ using System.Threading.Tasks;
 
 public class Benchmarking
 {
-    public static async Task CompararValores(ProdutoScraper precoMagazineLuiza, ProdutoScraper precoMercadoLivre, int idProduto, string NomeProduto)
+    public static decimal? PrecoEscolhido { get; private set; }
+    public static decimal? CompararValores(ProdutoScraper precoMagazineLuiza, ProdutoScraper precoMercadoLivre, int idProduto, string NomeProduto)
     {
         char[] charRemove = { 'R', '$', ' ' };
         // Converte as strings para decimal
@@ -29,18 +29,23 @@ public class Benchmarking
 
         if (precoMagalu < precoMercado)
         {
-            //PrecoComparado.AtualizarPrecoPorId(idProduto, precoMagalu);
+            PrecoEscolhido = precoMagalu;
             //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Magazine Luiza", "Sucesso", idProduto);
-            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", precoMagazineLuiza.Url, idProduto, NomeProduto);
+            //SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", precoMagazineLuiza.Url, idProduto, NomeProduto);
             
         }
         else if (precoMercado < precoMagalu)
         {
-            //PrecoComparado.AtualizarPrecoPorId(idProduto, precoMercado);
+            PrecoEscolhido = precoMercado;
             //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Mercado Livre", "Sucesso", idProduto);
-            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Mercado Livre", precoMercadoLivre.Url, idProduto, NomeProduto);
-            
+            //SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Mercado Livre", precoMercadoLivre.Url, idProduto, NomeProduto);
+
         }
+        else
+        {
+            return null;
+        }
+        return PrecoEscolhido;
     }
 
 }

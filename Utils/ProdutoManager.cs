@@ -18,7 +18,7 @@ namespace CrawlerDados.Utils
         {
             using (var context = new AlmoxarifadoAPIContext())
             {
-                return context.Logrobos.Any(log => log.IdProdutoApi == idProduto && log.CodigoRobo == "AO24");
+                return context.LOGROBO.Any(log => log.IdProdutoAPI == idProduto && log.CodigoRobo == "AO24");
             }
         }
     }

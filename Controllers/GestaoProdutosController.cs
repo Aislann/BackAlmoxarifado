@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AlmoxarifadoAPI.Models;
 using CrawlerDados.Utils;
+using System.Net.Http;
+using CrawlerDados.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace AlmoxarifadoAPI.Controllers
 {
@@ -15,6 +18,7 @@ namespace AlmoxarifadoAPI.Controllers
     public class GestaoProdutosController : ControllerBase
     {
         private readonly AlmoxarifadoAPIContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public GestaoProdutosController(AlmoxarifadoAPIContext context)
         {
@@ -158,6 +162,42 @@ namespace AlmoxarifadoAPI.Controllers
             return gestaoProduto;
         }
 
+        // PATCH: api/GestaoProdutos/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<GestaoProduto>> UpdateProduto(int id, [FromBody] GestaoProduto produtoPatch)
+        {
+            var produto = await _context.GestaoProdutos.FindAsync(id);
+            VerificaProduto.VerificarNovoProduto(produto);
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+            if (produtoPatch.Descricao != null)
+            {
+                produto.Descricao = produtoPatch.Descricao;
+            }
+            if (produtoPatch.Preco.HasValue)
+            {
+                produto.Preco = Benchmarking.PrecoEscolhido;   
+            }
+            if (produtoPatch.EstoqueAtual.HasValue)
+            {
+                produto.EstoqueAtual = produtoPatch.EstoqueAtual.Value;
+            }
+            if (produtoPatch.EstoqueMinimo.HasValue)
+            {
+                produto.EstoqueMinimo = produtoPatch.EstoqueMinimo.Value;
+            }
+            produto.Estado = "executado";
+
+            _context.Entry(produto).State = EntityState.Modified;
+            var updateProduto = await _context.SaveChangesAsync();
+
+            return Ok(updateProduto);
+
+        }
 
     }
 }

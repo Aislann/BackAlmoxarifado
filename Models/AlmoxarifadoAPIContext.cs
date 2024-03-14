@@ -17,12 +17,13 @@ namespace AlmoxarifadoAPI.Models
         }
 
         public virtual DbSet<GestaoProduto> GestaoProdutos { get; set; } = null!;
-        public virtual DbSet<Logrobo> Logrobos { get; set; } = null!;
+        public virtual DbSet<Logrobo> LOGROBO { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+                optionsBuilder.UseSqlServer("Data source=PC03LAB2509\\SENAI; Database=APIAlmoxarifado; User Id=sa; Password=senai.123;");
             }
         }
 
@@ -65,7 +66,7 @@ namespace AlmoxarifadoAPI.Models
 
                 entity.Property(e => e.IDlOg).HasColumnName("iDlOG");
 
-                entity.Property(e => e.IdProdutoApi).HasColumnName("IdProdutoAPI");
+                entity.Property(e => e.IdProdutoAPI).HasColumnName("IdProdutoAPI");
             });
 
             OnModelCreatingPartial(modelBuilder);
