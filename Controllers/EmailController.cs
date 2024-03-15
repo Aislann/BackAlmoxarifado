@@ -32,19 +32,32 @@ namespace AlmoxarifadoAPI.Controllers
             _context.Emails.Add(email);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEmails), new { id = email.EmailUsuario }, email);
+            return CreatedAtAction(nameof(GetEmails), new { id = email.idEmail }, email);
         }
 
-        // PATCH: api/Email/5
+        // PATCH: api/Email/{id}
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchEmail(string id, Email email)
+        public async Task<IActionResult> PatchEmail(int id, Email emailAtualizado)
         {
-            if (id != email.EmailUsuario)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
-            _context.Entry(email).State = EntityState.Modified;
+            if (id != emailAtualizado.idEmail)
+            {
+                return BadRequest("O ID fornecido no corpo da solicitação não corresponde ao ID fornecido no URL.");
+            }
+
+            var emailExistente = await _context.Emails.FindAsync(id);
+
+            if (emailExistente == null)
+            {
+                return NotFound();
+            }
+
+            // Atualiza apenas o email do registro encontrado
+            emailExistente.EmailUsuario = emailAtualizado.EmailUsuario;
 
             try
             {
@@ -65,9 +78,9 @@ namespace AlmoxarifadoAPI.Controllers
             return NoContent();
         }
 
-        private bool EmailExists(string id)
+        private bool EmailExists(int idEmail)
         {
-            return _context.Emails.Any(e => e.EmailUsuario == id);
+            return _context.Emails.Any(e => e.idEmail == idEmail);
         }
     }
 }

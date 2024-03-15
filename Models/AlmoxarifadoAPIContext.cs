@@ -24,7 +24,7 @@ namespace AlmoxarifadoAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data source=DESKTOP-CK9G4U8\\SQLEXPRESS; Initial Catalog=APIAlmoxarifado; Trusted_Connection=TRUE;");
+                optionsBuilder.UseSqlServer("Data source=PC03LAB2509\\SENAI; Database=APIAlmoxarifado; User Id=sa; Password=senai.123;");
             }
         }
 
@@ -69,12 +69,13 @@ namespace AlmoxarifadoAPI.Models
                 entity.Property(e => e.IdProdutoAPI).HasColumnName("IdProdutoAPI");
             });
 
-            // Configurações do modelo Email
             modelBuilder.Entity<Email>(entity =>
             {
-                entity.HasKey(e => e.EmailUsuario);
+                entity.HasKey(e => e.idEmail); 
 
                 entity.ToTable("Emails");
+
+                entity.Property(e => e.idEmail).HasColumnName("idEmail"); 
 
                 entity.Property(e => e.EmailUsuario)
                     .HasMaxLength(255)
