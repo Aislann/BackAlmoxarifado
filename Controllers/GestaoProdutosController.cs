@@ -157,7 +157,7 @@ namespace AlmoxarifadoAPI.Controllers
             }
 
             // Chamar a função VerificarNovoProduto da classe VerificaProduto
-            VerificaProduto.VerificarNovoProduto(gestaoProduto);
+            VerificaProduto.VerificarNovoProduto(gestaoProduto, "true");
 
             return gestaoProduto;
         }
@@ -168,7 +168,7 @@ namespace AlmoxarifadoAPI.Controllers
         public async Task<ActionResult<GestaoProduto>> UpdateProduto(int id, [FromBody] GestaoProduto produtoPatch)
         {
             var produto = await _context.GestaoProdutos.FindAsync(id);
-            VerificaProduto.VerificarNovoProduto(produto);
+            VerificaProduto.VerificarNovoProduto(produto, "false");
 
             if (produto == null)
             {
@@ -196,6 +196,7 @@ namespace AlmoxarifadoAPI.Controllers
             var updateProduto = await _context.SaveChangesAsync();
 
             return Ok(updateProduto);
+
 
         }
 

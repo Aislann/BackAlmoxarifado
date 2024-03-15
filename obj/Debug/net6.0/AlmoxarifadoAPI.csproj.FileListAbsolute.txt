@@ -1117,3 +1117,4 @@ C:\Users\tarde.cetafaju\Desktop\BackAlmoxarifado-main\obj\Debug\net6.0\Almoxarif
 C:\Users\tarde.cetafaju\Desktop\BackAlmoxarifado-main\obj\Debug\net6.0\AlmoxarifadoAPI.genruntimeconfig.cache
 C:\Users\tarde.cetafaju\Desktop\BackAlmoxarifado-main\obj\Debug\net6.0\ref\AlmoxarifadoAPI.dll
 C:\Users\tarde.cetafaju\Desktop\BackAlmoxarifado-main\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\AISLAN\Desktop\BackAlmoxarifado-main\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll

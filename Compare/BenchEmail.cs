@@ -8,9 +8,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Benchmarking
+public class BenchEmail
 {
-    public static decimal? PrecoEscolhido { get; private set; }
 
     public static decimal? CompararValores(ProdutoScraper precoMagazineLuiza, ProdutoScraper precoMercadoLivre, int idProduto, string NomeProduto)
     {
@@ -30,19 +29,19 @@ public class Benchmarking
 
         if (precoMagalu < precoMercado)
         {
-            PrecoEscolhido = precoMagalu;
-            LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Magazine Luiza", "Sucesso", idProduto);
+            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", precoMagazineLuiza.Url, idProduto, NomeProduto);
+
         }
         else if (precoMercado < precoMagalu)
         {
-            PrecoEscolhido = precoMercado;
-            LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Mercado Livre", "Sucesso", idProduto);
+            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Mercado Livre", precoMercadoLivre.Url, idProduto, NomeProduto);
+
         }
         else
         {
             return null;
         }
-        return PrecoEscolhido;
+        return 0;
     }
 
 }

@@ -24,9 +24,9 @@ public static class SendEmail
         {
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(remetente, senha);
-            client.EnableSsl = true; // Habilitar SSL/TLS
+            client.EnableSsl = true; 
 
-            // Construir mensagem de e-mail
+            // Construindo mensagem do e-mail
             MailMessage mensagem = new MailMessage(remetente, "aislanfake@outlook.com")
             {
                 Subject = $"Benchmarking: {NomeProduto}",
@@ -46,7 +46,7 @@ public static class SendEmail
             };
 
             client.Send(mensagem);
-            //LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Envio - Email", "Sucesso", idProduto);
+            LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Envio - Email", "Sucesso", idProduto);
             Console.WriteLine($"Email enviado com sucesso! ");
         }
     }
