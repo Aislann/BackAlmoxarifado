@@ -1,7 +1,9 @@
 ﻿using AlmoxarifadoAPI.Models;
 using CrawlerDados.Models;
+using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Security.Policy;
 
 public class MagazineLuizaScraper
 {
@@ -9,61 +11,46 @@ public class MagazineLuizaScraper
     {
         try
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.SetLoggingPreference("browser", OpenQA.Selenium.LogLevel.All);
-            chromeOptions.SetLoggingPreference("driver", OpenQA.Selenium.LogLevel.All);
-            chromeOptions.AddArgument("--headless");
-            chromeOptions.AddArgument("--disable-gpu");
-
-            // Desativa as mensagens no console do Chrome
-            chromeOptions.AddArgument("--disable-logging");
-            chromeOptions.AddArgument("--log-level=3");
-            chromeOptions.AddArgument("--silent");
-
+            
             // Inicializa o ChromeDriver
-            using (IWebDriver driver = new ChromeDriver(chromeOptions))
+            using (HttpClient client = new HttpClient())
             {
-                // Abre a página
-                driver.Navigate().GoToUrl($"https://www.magazineluiza.com.br/busca/{descricaoProduto}");
+                HttpResponseMessage response = client.GetAsync($"https://www.magazineluiza.com.br/busca/{descricaoProduto}").Result;
 
-                // Aguarda um tempo fixo para permitir que a página seja carregada (você pode ajustar conforme necessário)
-                System.Threading.Thread.Sleep(5000);
+                string content = response.Content.ReadAsStringAsync().Result;
 
-                // Encontra o elemento que possui o atributo data-testid
-                IWebElement priceElement = driver.FindElement(By.CssSelector("[data-testid='price-value']"));
-                IWebElement titleElement = driver.FindElement(By.CssSelector("[data-testid='product-title']"));
-                IWebElement urlElement = driver.FindElement(By.CssSelector("[data-testid='product-card-container']"));
+                var docHtml = new HtmlDocument();
 
-                // Verifica se o elemento foi encontrado
-                if (priceElement != null)
+                docHtml.LoadHtml(content);
+
+                var produtos = docHtml.DocumentNode.SelectNodes("//a");
+                ProdutoScraper produtoRetorno = new ProdutoScraper();
+                foreach (var item in produtos)
                 {
-                    // Obtém o preço do primeiro produto
-                    string firstProductPrice = priceElement.Text.Trim();
-                    string firstProductTitle = titleElement.Text.Trim();
-                    string firstProductUrl = urlElement.GetAttribute("href");
+                    if (item.OuterHtml.Contains("data-testid=\"product-card-container\""))
+                    {
 
-                    ProdutoScraper produto = new ProdutoScraper();
+                        var card = item;
+                        var linkproduto = card.Attributes["href"].Value;
+                        var elePrecoValue = card.SelectSingleNode(".//p[@data-testid=\"price-value\"]");
+                        var firstProductTitle = card.SelectSingleNode(".//h2[@data-testid=\"product-title\"]");
+                        var tdd = "sda";
 
-                    produto.Preco = firstProductPrice;
-                    produto.Titulo = firstProductTitle;
-                    produto.Url = firstProductUrl;
+                       
 
+                        produtoRetorno.Preco = elePrecoValue.InnerText;
+                        produtoRetorno.Titulo = firstProductTitle.InnerText;
+                        produtoRetorno.Url = linkproduto;
+
+
+
+                    }
+                    
+                }
 
                     // Registra o log com o ID do produto
                     RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Sucesso", idProduto);
-
-                    // Retorna o preço
-                    return produto;
-                }
-                else
-                {
-                    Console.WriteLine("Preço não encontrado.");
-
-                    // Registra o log com o ID do produto
-                    RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Magazine Luiza", "Preço não encontrado", idProduto);
-
-                    return null;
-                }
+                return produtoRetorno;
             }
         }
         catch (Exception ex)

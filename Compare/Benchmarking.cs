@@ -19,10 +19,9 @@ public class Benchmarking
         var precoMagaluvar = precoMagazineLuiza.Preco.Trim(charRemove);
         var precoMercadovar = precoMercadoLivre.Preco.Trim(charRemove);
 
-        decimal precoMagalu;
+        decimal precoMagalu = ConvertToBRL.StringToDecimal(precoMagaluvar);
         decimal precoMercado;
 
-        decimal.TryParse(precoMagaluvar, out precoMagalu);
         decimal.TryParse(precoMercadovar, out precoMercado);
 
         Console.WriteLine($"Valor Magazine Luiza: {precoMagalu}");
