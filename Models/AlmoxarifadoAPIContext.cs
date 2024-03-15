@@ -18,6 +18,7 @@ namespace AlmoxarifadoAPI.Models
 
         public virtual DbSet<GestaoProduto> GestaoProdutos { get; set; } = null!;
         public virtual DbSet<Logrobo> LOGROBO { get; set; } = null!;
+        public virtual DbSet<Email> Emails { get; set; } = null!; // Adicionando DbSet para a classe Email
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -55,7 +56,6 @@ namespace AlmoxarifadoAPI.Models
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("estado");
-
             });
 
             modelBuilder.Entity<Logrobo>(entity =>
@@ -67,6 +67,18 @@ namespace AlmoxarifadoAPI.Models
                 entity.Property(e => e.IDlOg).HasColumnName("iDlOG");
 
                 entity.Property(e => e.IdProdutoAPI).HasColumnName("IdProdutoAPI");
+            });
+
+            // Configurações do modelo Email
+            modelBuilder.Entity<Email>(entity =>
+            {
+                entity.HasKey(e => e.EmailUsuario);
+
+                entity.ToTable("Emails");
+
+                entity.Property(e => e.EmailUsuario)
+                    .HasMaxLength(255)
+                    .HasColumnName("EmailUsuario");
             });
 
             OnModelCreatingPartial(modelBuilder);

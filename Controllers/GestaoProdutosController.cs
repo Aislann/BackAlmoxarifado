@@ -29,10 +29,10 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GestaoProduto>>> GetGestaoProdutos()
         {
-          if (_context.GestaoProdutos == null)
-          {
-              return NotFound();
-          }
+            if (_context.GestaoProdutos == null)
+            {
+                return NotFound();
+            }
             return await _context.GestaoProdutos.ToListAsync();
         }
 
@@ -40,10 +40,10 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GestaoProduto>> GetGestaoProduto(int id)
         {
-          if (_context.GestaoProdutos == null)
-          {
-              return NotFound();
-          }
+            if (_context.GestaoProdutos == null)
+            {
+                return NotFound();
+            }
             var gestaoProduto = await _context.GestaoProdutos.FindAsync(id);
 
             if (gestaoProduto == null)
@@ -90,10 +90,10 @@ namespace AlmoxarifadoAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<GestaoProduto>> PostGestaoProduto(GestaoProduto gestaoProduto)
         {
-          if (_context.GestaoProdutos == null)
-          {
-              return Problem("Entity set 'AlmoxarifadoAPIContext.GestaoProdutos'  is null.");
-          }
+            if (_context.GestaoProdutos == null)
+            {
+                return Problem("Entity set 'AlmoxarifadoAPIContext.GestaoProdutos'  is null.");
+            }
             _context.GestaoProdutos.Add(gestaoProduto);
             try
             {
@@ -180,7 +180,7 @@ namespace AlmoxarifadoAPI.Controllers
             }
             if (produtoPatch.Preco.HasValue)
             {
-                produto.Preco = Benchmarking.PrecoEscolhido;   
+                produto.Preco = Benchmarking.PrecoEscolhido;
             }
             if (produtoPatch.EstoqueAtual.HasValue)
             {

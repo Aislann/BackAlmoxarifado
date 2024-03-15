@@ -1,5 +1,7 @@
-﻿using CrawlerDados.Models;
+﻿using AlmoxarifadoAPI.Models;
+using CrawlerDados.Models;
 using CrawlerDados.Utils;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,18 @@ using System.Threading.Tasks;
 
 public static class SendEmail
 {
+    private static readonly AlmoxarifadoAPIContext _context = new AlmoxarifadoAPIContext();
 
     public static void EnviarEmail(string nomeProdutoMagalu, string nomeProdutoMercado, decimal precoProdutoMercadoLivre, decimal precoProdutoMagazineLuiza, string melhorCompra, string urlProduto, int idProduto, string NomeProduto)
     {
+        // Obtendo o email cadastrado no banco de dados
+        var destinatario = _context.Emails.FirstOrDefault(); // Obtém o primeiro email encontrado no banco de dados
+
+        if (destinatario == null)
+        {
+            Console.WriteLine("Endereço de e-mail do remetente não encontrado.");
+            return;
+        }
 
         // Configurações do servidor SMTP do Outlook
         string smtpServer = "smtp-mail.outlook.com"; 
@@ -25,9 +36,10 @@ public static class SendEmail
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(remetente, senha);
             client.EnableSsl = true; 
+            Email email = new Email();
 
             // Construindo mensagem do e-mail
-            MailMessage mensagem = new MailMessage(remetente, "aislanfake@outlook.com")
+            MailMessage mensagem = new MailMessage(remetente, destinatario.EmailUsuario)
             {
                 Subject = $"Benchmarking: {NomeProduto}",
                 Body = $"Mercado Livre\n" +

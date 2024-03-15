@@ -1,6 +1,7 @@
 ﻿using AlmoxarifadoAPI.Models;
 using CrawlerDados.Models;
 using CrawlerDados.Utils;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
