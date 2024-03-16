@@ -32,7 +32,7 @@ namespace CrawlerDados.Utils
         {
             var relatorioBenchmarking = new
             {
-                codigorobo = 1806,
+                codigorobo = 1824,
                 nomedev = "AOC4",
                 nomeproduto = NomeProduto,
                 valor1 = precoMagalu, 
