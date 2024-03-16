@@ -4,7 +4,6 @@ namespace CrawlerDados.Utils
 {
     public class LogManager
     {
-        // Método para registrar um log no banco de dados
         public static void RegistrarLog(string codRob, string usuRob, DateTime dateLog, string processo, string infLog, int idProd)
         {
             using (var context = new AlmoxarifadoAPIContext())

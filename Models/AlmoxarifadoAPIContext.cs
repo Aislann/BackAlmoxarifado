@@ -24,7 +24,7 @@ namespace AlmoxarifadoAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data source=PC03LAB2509\\SENAI; Database=APIAlmoxarifado; User Id=sa; Password=senai.123;");
+                optionsBuilder.UseSqlServer("Data source=dbbenchmarking.cfk2cqm644xo.us-east-2.rds.amazonaws.com; Database=almoxarifadoequipe01; User Id=admin; Password=master12;");
             }
         }
 

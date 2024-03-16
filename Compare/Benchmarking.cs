@@ -15,7 +15,6 @@ public class Benchmarking
     public static decimal? CompararValores(ProdutoScraper precoMagazineLuiza, ProdutoScraper precoMercadoLivre, int idProduto, string NomeProduto)
     {
         char[] charRemove = { 'R', '$', ' ' };
-        // Converte as strings para decimal
         var precoMagaluvar = precoMagazineLuiza.Preco.Trim(charRemove);
         var precoMercadovar = precoMercadoLivre.Preco.Trim(charRemove);
 
@@ -27,15 +26,21 @@ public class Benchmarking
         Console.WriteLine($"Valor Magazine Luiza: {precoMagalu}");
         Console.WriteLine($"Valor Mercado Livre: {precoMercado}\n");
 
+        
+
         if (precoMagalu < precoMercado)
         {
             PrecoEscolhido = precoMagalu;
             LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Magazine Luiza", "Sucesso", idProduto);
+            decimal economia = precoMercado - precoMagalu;
+            LogRelatorio.RelatorioAsync(NomeProduto, precoMagalu, precoMercado, economia);
         }
         else if (precoMercado < precoMagalu)
         {
             PrecoEscolhido = precoMercado;
             LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Menor Valor - Mercado Livre", "Sucesso", idProduto);
+            decimal economia =  precoMagalu - precoMercado;
+            LogRelatorio.RelatorioAsync(NomeProduto, precoMagalu, precoMercado, economia);
         }
         else
         {
