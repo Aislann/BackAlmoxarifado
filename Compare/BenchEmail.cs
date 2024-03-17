@@ -29,7 +29,7 @@ public class BenchEmail
 
         if (precoMagalu < precoMercado)
         {
-            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", precoMagazineLuiza.Url, idProduto, NomeProduto);
+            SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", "https://www.magazineluiza.com.br"+precoMagazineLuiza.Url, idProduto, NomeProduto);
 
         }
         else if (precoMercado < precoMagalu)
