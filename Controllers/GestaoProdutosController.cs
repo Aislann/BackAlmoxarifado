@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AlmoxarifadoAPI.Models;
 using CrawlerDados.Utils;
-using System.Net.Http;
-using CrawlerDados.Models;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace AlmoxarifadoAPI.Controllers
 {
@@ -25,7 +17,6 @@ namespace AlmoxarifadoAPI.Controllers
             _context = context;
         }
 
-        // GET: api/GestaoProdutos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GestaoProduto>>> GetGestaoProdutos()
         {
@@ -36,7 +27,6 @@ namespace AlmoxarifadoAPI.Controllers
             return await _context.GestaoProdutos.ToListAsync();
         }
 
-        // GET: api/GestaoProdutos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<GestaoProduto>> GetGestaoProduto(int id)
         {
@@ -54,8 +44,6 @@ namespace AlmoxarifadoAPI.Controllers
             return gestaoProduto;
         }
 
-        // PUT: api/GestaoProdutos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGestaoProduto(int id, GestaoProduto gestaoProduto)
         {
@@ -85,8 +73,6 @@ namespace AlmoxarifadoAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/GestaoProdutos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<GestaoProduto>> PostGestaoProduto(GestaoProduto gestaoProduto)
         {
@@ -114,7 +100,6 @@ namespace AlmoxarifadoAPI.Controllers
             return CreatedAtAction("GetGestaoProduto", new { id = gestaoProduto.IdProduto }, gestaoProduto);
         }
 
-        // DELETE: api/GestaoProdutos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGestaoProduto(int id)
         {
@@ -139,8 +124,6 @@ namespace AlmoxarifadoAPI.Controllers
             return (_context.GestaoProdutos?.Any(e => e.IdProduto == id)).GetValueOrDefault();
         }
 
-        // GET: api/GestaoProdutos/VerificarNovoProduto/5
-
         [HttpGet("VerificarNovoProduto/{id}")]
         public async Task<ActionResult<GestaoProduto>> VerificarNovoProduto(int id)
         {
@@ -156,14 +139,11 @@ namespace AlmoxarifadoAPI.Controllers
                 return NotFound();
             }
 
-            // Chamar a função VerificarNovoProduto da classe VerificaProduto
             VerificaProduto.VerificarNovoProduto(gestaoProduto, "true");
 
             return gestaoProduto;
         }
 
-        // PATCH: api/GestaoProdutos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPatch("{id}")]
         public async Task<ActionResult<GestaoProduto>> UpdateProduto(int id, [FromBody] GestaoProduto produtoPatch)
         {
@@ -181,6 +161,7 @@ namespace AlmoxarifadoAPI.Controllers
             if (produtoPatch.Preco.HasValue)
             {
                 produto.Preco = Benchmarking.PrecoEscolhido;
+                Console.WriteLine(produto.Preco);
             }
             if (produtoPatch.EstoqueAtual.HasValue)
             {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AlmoxarifadoAPI.Models
+﻿namespace AlmoxarifadoAPI.Models
 {
     public partial class GestaoProduto
     {

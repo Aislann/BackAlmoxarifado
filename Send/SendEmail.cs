@@ -1,14 +1,7 @@
 ﻿using AlmoxarifadoAPI.Models;
-using CrawlerDados.Models;
 using CrawlerDados.Utils;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Mail; 
 
 public static class SendEmail
 {
@@ -16,8 +9,7 @@ public static class SendEmail
 
     public static void EnviarEmail(string nomeProdutoMagalu, string nomeProdutoMercado, decimal precoProdutoMercadoLivre, decimal precoProdutoMagazineLuiza, string melhorCompra, string urlProduto, int idProduto, string NomeProduto)
     {
-        // Obtendo o email cadastrado no banco de dados
-        var destinatario = _context.Emails.FirstOrDefault(); // Obtém o primeiro email encontrado no banco de dados
+        var destinatario = _context.Emails.FirstOrDefault(); 
 
         if (destinatario == null)
         {
@@ -38,7 +30,6 @@ public static class SendEmail
             client.EnableSsl = true; 
             Email email = new Email();
 
-            // Construindo mensagem do e-mail
             MailMessage mensagem = new MailMessage(remetente, destinatario.EmailUsuario)
             {
                 Subject = $"Benchmarking: {NomeProduto}",

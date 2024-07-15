@@ -1,9 +1,6 @@
 ﻿using AlmoxarifadoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlmoxarifadoAPI.Controllers
 {
@@ -18,14 +15,12 @@ namespace AlmoxarifadoAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Email
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Email>>> GetEmails()
         {
             return await _context.Emails.ToListAsync();
         }
 
-        // POST: api/Email
         [HttpPost]
         public async Task<ActionResult<Email>> PostEmail(Email email)
         {

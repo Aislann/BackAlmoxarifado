@@ -1,6 +1,4 @@
 ﻿using AlmoxarifadoAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace CrawlerDados.Utils
 {
@@ -20,9 +18,7 @@ namespace CrawlerDados.Utils
                     {
                         if (!produtosVerificados.Exists(p => p.IdProduto == produto.IdProduto))
                         {
-                            // Se é um novo produto, faça algo com ele
                             Console.WriteLine($"Novo produto encontrado: ID {produto.IdProduto}, Nome: {produto.Descricao}\n");
-                            // Adicionar o produto à lista de produtos verificados
                             produtosVerificados.Add(produto);
 
                             LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Consultar Dados - Verificação", "Sucesso", produto.IdProduto);
@@ -30,8 +26,9 @@ namespace CrawlerDados.Utils
                             MercadoLivreScraper mercadoLivreScraper = new MercadoLivreScraper();
                             MagazineLuizaScraper magazineLuizaScraper = new MagazineLuizaScraper();
 
-                            var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto);
+                            var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto); //Erro aqui
                             var precoMercadoLivre = mercadoLivreScraper.ObterPreco(produto.Descricao, produto.IdProduto);
+
 
                             Benchmarking.CompararValores(precoMagazineLuiza, precoMercadoLivre, produto.IdProduto, produto.Descricao);
 

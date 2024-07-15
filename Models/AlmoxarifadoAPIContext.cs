@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace AlmoxarifadoAPI.Models
 {
@@ -18,13 +15,13 @@ namespace AlmoxarifadoAPI.Models
 
         public virtual DbSet<GestaoProduto> GestaoProdutos { get; set; } = null!;
         public virtual DbSet<Logrobo> LOGROBO { get; set; } = null!;
-        public virtual DbSet<Email> Emails { get; set; } = null!; // Adicionando DbSet para a classe Email
+        public virtual DbSet<Email> Emails { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data source=dbbenchmarking.cfk2cqm644xo.us-east-2.rds.amazonaws.com; Database=almoxarifadoequipe01; User Id=admin; Password=master12;");
+                optionsBuilder.UseSqlServer("Data source=DESKTOP-CK9G4U8\\SQLEXPRESS; Initial Catalog=APIAlmoxarifado; Trusted_Connection=TRUE;");
             }
         }
 
@@ -75,7 +72,7 @@ namespace AlmoxarifadoAPI.Models
 
                 entity.ToTable("Emails");
 
-                entity.Property(e => e.idEmail).HasColumnName("idEmail"); 
+                entity.Property(e => e.idEmail).HasColumnName("idEmail");
 
                 entity.Property(e => e.EmailUsuario)
                     .HasMaxLength(255)

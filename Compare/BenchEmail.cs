@@ -1,13 +1,4 @@
-﻿using AlmoxarifadoAPI.Models;
-using CrawlerDados.Models;
-using CrawlerDados.Utils;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CrawlerDados.Models;
 
 public class BenchEmail
 {
@@ -27,7 +18,7 @@ public class BenchEmail
         Console.WriteLine($"Valor Magazine Luiza: {precoMagalu}");
         Console.WriteLine($"Valor Mercado Livre: {precoMercado}\n");
 
-        if (precoMagalu < precoMercado)
+        if (precoMagalu <= precoMercado)
         {
             SendEmail.EnviarEmail(precoMagazineLuiza.Titulo, precoMercadoLivre.Titulo, precoMercado, precoMagalu, "Magazine Luiza", "https://www.magazineluiza.com.br"+precoMagazineLuiza.Url, idProduto, NomeProduto);
 

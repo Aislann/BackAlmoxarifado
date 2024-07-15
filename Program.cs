@@ -1,7 +1,5 @@
 using AlmoxarifadoAPI.Models;
-using CrawlerDados.Utils;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
