@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Compare\PrecoComparado.cs" />
+    <Compile Remove="Services\Compare\PrecoComparado.cs" />
     <Compile Remove="Migrations\20240313181922_teste.cs" />
     <Compile Remove="Migrations\20240313181922_teste.Designer.cs" />
     <Compile Remove="Migrations\AlmoxarifadoAPIContextModelSnapshot.cs" />
