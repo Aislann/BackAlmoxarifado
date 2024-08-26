@@ -4,12 +4,9 @@ namespace AlmoxarifadoAPI.Services.Utils
 {
     public class VerificaProduto
     {
-        // Lista para armazenar produtos já verificados
         static List<GestaoProduto> produtosVerificados = new List<GestaoProduto>();
-
         public static void VerificarNovoProduto(GestaoProduto produto, string verificacao)
         {
-
             try
             {
                 if (verificacao == "false")
@@ -28,10 +25,7 @@ namespace AlmoxarifadoAPI.Services.Utils
 
                             var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto); //Erro aqui
                             var precoMercadoLivre = mercadoLivreScraper.ObterPreco(produto.Descricao, produto.IdProduto);
-
-
                             Benchmarking.CompararValores(precoMagazineLuiza, precoMercadoLivre, produto.IdProduto, produto.Descricao);
-
                         }
                     }
                 }
@@ -39,10 +33,8 @@ namespace AlmoxarifadoAPI.Services.Utils
                 {
                     MercadoLivreScraper mercadoLivreScraper = new MercadoLivreScraper();
                     MagazineLuizaScraper magazineLuizaScraper = new MagazineLuizaScraper();
-
                     var precoMagazineLuiza = magazineLuizaScraper.ObterPreco(produto.Descricao, produto.IdProduto);
                     var precoMercadoLivre = mercadoLivreScraper.ObterPreco(produto.Descricao, produto.IdProduto);
-
                     BenchEmail.CompararValores(precoMagazineLuiza, precoMercadoLivre, produto.IdProduto, produto.Descricao);
                 }
             }

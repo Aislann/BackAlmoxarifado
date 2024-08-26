@@ -20,7 +20,6 @@ namespace AlmoxarifadoAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Logrobo
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Logrobo>>> GetLogrobos()
         {
@@ -31,7 +30,6 @@ namespace AlmoxarifadoAPI.Controllers
             return await _context.LOGROBO.ToListAsync();
         }
 
-        // GET: api/Logrobo/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Logrobo>> GetLogrobo(int id)
         {
@@ -49,8 +47,6 @@ namespace AlmoxarifadoAPI.Controllers
             return logrobo;
         }
 
-        // PUT: api/Logrobo/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLogrobo(int id, Logrobo logrobo)
         {
@@ -80,8 +76,6 @@ namespace AlmoxarifadoAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Logrobo
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Logrobo>> PostLogrobo(Logrobo logrobo)
         {
@@ -95,7 +89,6 @@ namespace AlmoxarifadoAPI.Controllers
             return CreatedAtAction("GetLogrobo", new { id = logrobo.IDlOg }, logrobo);
         }
 
-        // DELETE: api/Logrobo/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLogrobo(int id)
         {

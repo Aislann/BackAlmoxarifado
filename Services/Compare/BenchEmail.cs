@@ -6,7 +6,6 @@ public class BenchEmail
     public static decimal? CompararValores(ProdutoScraper precoMagazineLuiza, ProdutoScraper precoMercadoLivre, int idProduto, string NomeProduto)
     {
         char[] charRemove = { 'R', '$', ' ' };
-        // Converte as strings para decimal
         var precoMagaluvar = precoMagazineLuiza.Preco.Trim(charRemove);
         var precoMercadovar = precoMercadoLivre.Preco.Trim(charRemove);
 

@@ -30,7 +30,6 @@ namespace AlmoxarifadoAPI.Controllers
             return CreatedAtAction(nameof(GetEmails), new { id = email.idEmail }, email);
         }
 
-        // PATCH: api/Email/{id}
         [HttpPatch("{id}")]
         public async Task<IActionResult> PatchEmail(int id, Email emailAtualizado)
         {
@@ -51,7 +50,6 @@ namespace AlmoxarifadoAPI.Controllers
                 return NotFound();
             }
 
-            // Atualiza apenas o email do registro encontrado
             emailExistente.EmailUsuario = emailAtualizado.EmailUsuario;
 
             try

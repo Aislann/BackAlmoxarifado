@@ -6,23 +6,18 @@ using System.Net.Mail;
 public static class SendEmail
 {
     private static readonly AlmoxarifadoAPIContext _context = new AlmoxarifadoAPIContext();
-
     public static void EnviarEmail(string nomeProdutoMagalu, string nomeProdutoMercado, decimal precoProdutoMercadoLivre, decimal precoProdutoMagazineLuiza, string melhorCompra, string urlProduto, int idProduto, string NomeProduto)
     {
         var destinatario = _context.Emails.FirstOrDefault(); 
-
         if (destinatario == null)
         {
             Console.WriteLine("Endereço de e-mail do remetente não encontrado.");
             return;
         }
-
-        // Configurações do servidor SMTP do Outlook
         string smtpServer = "smtp-mail.outlook.com"; 
         int porta = 587; 
         string remetente = "aislanfake@outlook.com"; 
         string senha = "senhateste1"; 
-
         using (SmtpClient client = new SmtpClient(smtpServer, porta))
         {
             client.UseDefaultCredentials = false;
@@ -47,10 +42,8 @@ public static class SendEmail
                        $"AO24\n" +
                        $"Usuário: AislanOliveira"
             };
-
             client.Send(mensagem);
             LogManager.RegistrarLog("AO24", "AislanOliveira", DateTime.Now, "Envio - Email", "Sucesso", idProduto);
-            Console.WriteLine($"Email enviado com sucesso! ");
         }
     }
 }

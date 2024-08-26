@@ -10,7 +10,6 @@ namespace AlmoxarifadoAPI.Controllers
     public class GestaoProdutosController : ControllerBase
     {
         private readonly AlmoxarifadoAPIContext _context;
-        private readonly IHttpClientFactory _httpClientFactory;
 
         public GestaoProdutosController(AlmoxarifadoAPIContext context)
         {
@@ -175,10 +174,7 @@ namespace AlmoxarifadoAPI.Controllers
 
             _context.Entry(produto).State = EntityState.Modified;
             var updateProduto = await _context.SaveChangesAsync();
-
             return Ok(updateProduto);
-
-
         }
 
     }
